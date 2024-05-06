@@ -3,9 +3,11 @@
 const { Server } = require("socket.io");
 const express = require("express");
 const http = require("http"); // Import the http module
+const cors = require("cors");
 
 const app = express();
 const port = process.env.PORT || 8000; // Use environment port or default to 8000
+app.use(cors());
 
 const startServer = () => {
   // Create an http server using the Express app

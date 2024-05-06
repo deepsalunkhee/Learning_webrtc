@@ -1,3 +1,5 @@
+// client/src/socket.js
+
 import React, { createContext, useMemo, useContext } from "react";
 import { io } from "socket.io-client";
 
@@ -9,7 +11,8 @@ export const useSocket = () => {
 };
 
 export const SocketProvider = (props) => {
-  const socket = useMemo(() => io("localhost:8000"), []);
+  
+  const socket = useMemo(() => io("https://learning-webrtc.vercel.app"), []);
 
   return (
     <SocketContext.Provider value={socket}>
