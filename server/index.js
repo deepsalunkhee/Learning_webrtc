@@ -1,5 +1,8 @@
 const { Server } = require("socket.io");
 
+
+const startserver = async () => {
+
 const io = new Server(8000, {
   cors: true,
 });
@@ -36,3 +39,7 @@ io.on("connection", (socket) => {
     io.to(to).emit("peer:nego:final", { from: socket.id, ans });
   });
 });
+
+};
+
+startserver();
