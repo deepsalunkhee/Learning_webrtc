@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback, useState } from "react";
 import ReactPlayer from "react-player";
 import peer from "../service/peer";
+import "./Room.css";
 import { useSocket } from "../context/SocketProvider";
 
 const RoomPage = () => {
@@ -113,32 +114,71 @@ const RoomPage = () => {
     <div>
       <h1>Room Page</h1>
       <h4>{remoteSocketId ? "Connected" : "No one in room"}</h4>
-      {myStream && <button onClick={sendStreams}>Send Stream</button>}
+      {myStream && <button onClick={sendStreams}  style={{margin:"10px"}}>Send Stream</button> }
       {remoteSocketId && <button onClick={handleCallUser}>CALL</button>}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          alignItems: "center",
+          backgroundColor: "#F0FFFF",
+          borderRadius: "50px",
+          marginLeft:"20px",
+          marginRight:"20px",
+          
+        }}
+      >
       {myStream && (
-        <>
+      
+        <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "center",
+          margin:"10px",
+       
+        }}
+        >
           <h1>My Stream</h1>
           <ReactPlayer
             playing
             muted
-            height="100px"
-            width="200px"
+            height="300px"
+            width="400px"
+            
             url={myStream}
           />
-        </>
+        </div>
       )}
       {remoteStream && (
-        <>
+        <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "center",
+          margin:"10px"
+        }}
+        >
           <h1>Remote Stream</h1>
+          <div
+          style={{
+            borderRadius:"10px",
+          }}
+          >
           <ReactPlayer
             playing
             muted
-            height="100px"
-            width="200px"
+            height="300px"
+            width="400px"
             url={remoteStream}
           />
-        </>
+          </div>
+        </div>
       )}
+      </div>
     </div>
   );
 };

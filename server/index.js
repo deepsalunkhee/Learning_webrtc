@@ -2,21 +2,26 @@
 
 const { Server } = require("socket.io");
 const express = require("express");
-const http = require("http"); // Import the http module
+const http = require("http");
 const cors = require("cors");
 
 const app = express();
-const port = process.env.PORT || 8000; // Use environment port or default to 8000
+const port = process.env.PORT || 8000; 
 app.use(cors());
 
 const startServer = () => {
   // Create an http server using the Express app
   const server = http.createServer(app);
+  
 
   // Initialize Socket.IO server with the http server
-  const io = new Server(server, {
-    cors: true,
+  const io = new Server(server,{
+    cors: {
+      origin: "*",
+      methods: ["GET", "POST"]
+    }
   });
+ 
 
   const emailToSocketIdMap = new Map();
   const socketidToEmailMap = new Map();
